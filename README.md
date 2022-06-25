@@ -1,6 +1,6 @@
 # Bert-Pretraining
 
-Pretrain your custom bert on Multiple GPUs using HuggingFace/ PyTorch
+The project is a python module that facilitates BERT pretraining.  The current existing open source solution for training this specific model is convoluted. We have simplified the procedure. The project's goal is to open the code to the wider Machine Learning community to help ML practitioners train their own BERT models using their data.  The code was created to train the latest iteration of VMware's BERT model (vBERT) to help Machine Learning and Natural Language Processing Researchers within VMware. 
 
 <hr>
 
@@ -11,8 +11,8 @@ Setup a Python 3.7 or 3.8 virtual env
 and install the requirements using\
 ` pip install -r requirements.txt `
 
-### <b>Creating pretraining data</b>
-Create the pretraining data using create_pretraining_data.py from https://github.com/google-research/bert
+### <b> Pretraining data</b>
+Create the pretraining data using create_pretraining_data.py from https://github.com/google-research/bert .
 
 You can create a seperate eval file if you want to evaluate your model's MLM and NSP accuracies on a seperate eval set during training.
 
@@ -21,6 +21,8 @@ You can also split a single file into training and eval vectors by using the <b>
 <hr>
 
 ## Config 
+The pretraining parameters are handled through the Pretraining_Config class. Please follow the Demo.ipynb to run the a sample bert pretraining.
+
 PRETRAINING_CONFIG PARAMS
 
 | Parameter        | Default Value |Description                        |
@@ -48,7 +50,7 @@ PRETRAINING_CONFIG PARAMS
 
 <i>** The output log_csv file records the hyperparameters and evaluation results </i>
 
-<i> The demo.tfrecord file was created from the wikicorpus dataset</i>
+The demo.tfrecord file was created from the wikicorpus dataset.
 <hr>
 
 ## Contributing
