@@ -2,6 +2,7 @@
 
 The project is a python module that facilitates BERT pretraining.  The current existing open source solution for training this specific model is convoluted. We have simplified the procedure. The project's goal is to open the code to the wider Machine Learning community to help ML practitioners train their own BERT models using their data.  The code was created to train the latest iteration of VMware's BERT model (vBERT) to help Machine Learning and Natural Language Processing Researchers within VMware. 
 
+The Demo notebook is located within the src folder
 <hr>
 
 ## Setup
