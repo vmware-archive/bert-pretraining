@@ -1,22 +1,55 @@
-# bert-pretraining
+# Bert-Pretraining
 
-## Overview
+Pretrain your custom bert on Multiple GPUs using HuggingFace/ PyTorch
 
-## Try it out
+<hr>
 
-### Prerequisites
+## Setup
 
-* Prereq 1
-* Prereq 2
-* Prereq 3
+### <b>Env Setup</b>
+Setup a Python 3.7 or 3.8 virtual env
+and install the requirements using\
+` pip install -r requirements.txt `
 
-### Build & Run
+### <b>Creating pretraining data</b>
+Create the pretraining data using create_pretraining_data.py from https://github.com/google-research/bert
 
-1. Step 1
-2. Step 2
-3. Step 3
+You can create a seperate eval file if you want to evaluate your model's MLM and NSP accuracies on a seperate eval set during training.
 
-## Documentation
+You can also split a single file into training and eval vectors by using the <b>split_ratio</b> parameter in the config object.
+
+<hr>
+
+## Config 
+PRETRAINING_CONFIG PARAMS
+
+| Parameter        | Default Value |Description                        |
+| :----------------|:-----------: | :-----------                          |
+|model_name    | DEMOBERT  | Model name|
+|is_base       | True| Boolean to select between BERT-Base and BERT-Large|
+|max_seq_length| 128 |MSL, should be consistent with the tfrecord file (generate 2 seperate files if you want to pretrain BERT with different MSLs eg: 128, 512) |
+|max_predictions_per_seq| 20 | Number of tokens masked for MLM, should be consistent with the tfrecord file|
+|num_train_steps| 1000 | Number of steps to train the model for, terminates if we reach the end of tfrecord file (meaningful pretraining would require more training steps)|
+|num_warmup_steps| 10| Number of warmup steps, BERT uses 1% of training steps as warmup steps|
+|learning_rate| 1e-05 | Model Learning rate|
+|train_batch_size| 32 | Training batch size (split across GPUs)|
+|save_intermediate_checkpoints| True | Save checkpoints for every 'x 'training steps decided by the save_checkpoint_steps. Checkpoint will always be saved at the end of training|
+|save_intermediate_checkpoint_steps| 25000 | Saves checkpoint after every 'x' training steps (not including warmup steps)|
+|eval_batch_size| 32 |Evaluation batch size (split across GPUs)|
+|max_eval_steps | 1000| Number of steps to perform evaluation on when there is no seperate eval file.<Br> If a seperate eval file is provided or if split_ratio is provided, the entire eval dataset is used for evaluation|
+|eval_point | 1000 | Performs evaluation for every 'x' training steps|
+|split_ratio| None| Percent of training dataset to use for evaluation if you want to split training tfrecord into train, eval datasets.<br> If no split ratio is provided, the training file will be used for evaulation (number of eval steps is controlled by the max_eval_steps parameter)|
+|init_checkpoint| None| If you are resuming training provide the path to previous checkpoint. If you are initializing the training from a non default checkpoint(BERT-Base, BERT-Large), provide the model checkpoint name/path).|
+|input_file| ./input/demo_MSL128.tfrecord | Input tfrecord file created using create_pretraining_data.py from https://github.com/google-research/bert|
+|eval_file| None| If you want to use seperate eval dataset, provide the input tfrecord file created using create_pretraining_data.py from https://github.com/google-research/bert
+|log_csv| ./eval_results.csv| File which stores the evaluation results **|
+|output_dir | ./ckpts | Directory to store the checkpoints|
+|num_gpu|	3| Number of GPUs to use for training|
+
+<i>** The output log_csv file records the hyperparameters and evaluation results </i>
+
+<i> The demo.tfrecord file was created from the wikicorpus dataset</i>
+<hr>
 
 ## Contributing
 
@@ -24,6 +57,9 @@ The bert-pretraining project team welcomes contributions from the community. Bef
 read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be
 signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on
 as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+<hr>
 
 ## License
+Apache-2.0
+
 
