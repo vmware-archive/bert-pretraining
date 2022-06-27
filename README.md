@@ -56,10 +56,8 @@ The demo.tfrecord file was created from the wikicorpus dataset.
 
 ## Contributing
 
-The bert-pretraining project team welcomes contributions from the community. Before you start working with bert-pretraining, please
-read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be
-signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on
-as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+The bert-pretraining project team welcomes contributions from the community. Before you start working with this project please read and sign our Contributor License Agreement (https://cla.vmware.com/cla/1/preview). If you wish to contribute code and you have not signed our Contributor Licence Agreement (CLA), our bot will prompt you to do so when you open a Pull Request. For any questions about the CLA process, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md).
+
 <hr>
 
 ## License
