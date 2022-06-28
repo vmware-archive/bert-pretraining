@@ -2,7 +2,7 @@
 
 The project is a python module that facilitates BERT pretraining.  The current existing open source solution for training this specific model is convoluted. We have simplified the procedure. The project's goal is to open the code to the wider Machine Learning community to help ML practitioners train their own BERT models using their data.  The code was created to train the latest iteration of VMware's BERT model (vBERT) to help Machine Learning and Natural Language Processing Researchers within VMware. 
 
-The Demo notebook is located within the src folder
+The Demo notebook is located within demo folder
 <hr>
 
 ## Setup
@@ -10,7 +10,8 @@ The Demo notebook is located within the src folder
 ### <b>Env Setup</b>
 Setup a Python 3.7 or 3.8 virtual env
 and install the requirements using\
-` pip install -r requirements.txt `
+` pip install .` 
+from within the root folder
 
 ### <b> Pretraining data</b>
 Create the pretraining data using create_pretraining_data.py from https://github.com/google-research/bert .

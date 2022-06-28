@@ -65,6 +65,7 @@ class Pretraining_Config:
 
         # initialization checkpoint, with a bert directory or huggingface model
         self.init_checkpoint = ''
+        
 
         # Tf_record file
         self.input_file = "./input/demo_MSL128.tfrecord"
@@ -95,10 +96,9 @@ class Pretraining_Config:
         hp_string += 'num_warmup_steps:\t'+str(self.num_warmup_steps)+'\n\t'
         hp_string += 'learning_rate:\t'+str(self.learning_rate)+'\n\t'
         hp_string += 'train_batch_size:\t'+str(self.train_batch_size)+'\n\t'
-        hp_string += 'save_checkpoint:\t'+str(self.
-                                              save_intermediate_checkpoints)+'\
-                                              \n\t'
-        hp_string += 'save_checkpoint_steps:\t' + \
+        hp_string += 'save_intermediate_checkpoints:\t' + \
+                     str(self.save_intermediate_checkpoints)+'\n\t'
+        hp_string += 'save_intermediate_checkpoints_steps:\t' + \
                      str(self.save_intermediate_checkpoints_steps)+'\n\t'
         hp_string += 'eval_batch_size:\t'+str(self.eval_batch_size)+'\n\t'
         hp_string += 'max_eval_steps:\t'+str(self.max_eval_steps)+'\n\t'
@@ -401,9 +401,9 @@ def train(pretraining_config, model, train_data, optim, scheduler, accelerator,
                                       format(output.loss.item()))
 
         # save checkpoint
-        if pretraining_config.save_checkpoint:
+        if pretraining_config.save_intermediate_checkpoints:
             if (step_count-pretraining_config.num_warmup_steps) % (
-                pretraining_config.save_checkpoints_steps) == 0 and (
+                pretraining_config.save_intermediate_checkpoints_steps) == 0 and (
                     step_count-pretraining_config.num_warmup_steps) != 0:
                 accelerator.wait_for_everyone()
                 accelerator.print('Saving Checkpoint')
