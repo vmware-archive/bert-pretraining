@@ -13,6 +13,10 @@ and install the requirements using\
 ` pip install .` 
 from within the root folder
 
+or 
+
+` pip install git+https://github.com/vmware-labs/bert-pretraining `
+
 ### <b> Pretraining data</b>
 Create the pretraining data using create_pretraining_data.py from https://github.com/google-research/bert .
 
