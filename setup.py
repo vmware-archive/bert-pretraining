@@ -15,12 +15,12 @@ setup(
     packages=['bert_pretraining'],
 
     install_requires=['numpy',
-                      'torch',
                       'scikit-learn',
                       'pandas',
-                      'accelerate>=0.6.0',
-                      'transformers>=4.18.0',
-                      'tfrecord>=1.14.1',
-
+                      'protobuf~=3.19.0',
+                      'torch~=1.8',
+                      'accelerate~=0.6.0',
+                      'transformers~=4.18.0',
+                      'tfrecord>=1.14.1'
                       ]
 )
